@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Игра</title>
+	<meta charset="utf-8">
+</head>
+<body>
+<script src="keys.js"></script>
+<script src="engine.js"></script>
+<script src="graph.js"></script>
+<script src="player.js"></script>
+<script src="grid.js"></script>
+<script src="ball.js"></script>
+<script src="map.js"></script>
+
+<canvas id="canvas" width="640" height="480" style="position: absolute; top: 0; left: 0;"></canvas>
+<div style="position: absolute; top: 10px; left: 10px;"> 
+Счет игрока: <b id="score">0</b><br>
+Жизни: <b id="hp">3</b>
+</div>
+
+<script type = "text/javascript">
+init();
+
+
+
+
+
+
+
+grid.create(map);
+
+//grid.generate(5,50,50, 'green');
+player.init(width/2, 200, 'purple');
+ball.init(player.x+Math.ceil(player.width/2), player.y-10, 5, 'white');
+var game = function() {
+	fillAll('#0099FF');
+	grid.draw();
+	ball.collision();
+	ball.move();
+	ball.draw();
+	player.move();
+	player.draw();
+	//clearAll();
+
+};
+var menu = function () {
+fillAll('#0099FF');
+	grid.draw();
+	ball.draw();
+	player.draw();
+	
+	
+	if (isAnyKeyDown()) {
+		setGame(game);
+	}
+};
+
+
+startGame(menu);
+
+</script>
+
+</body>
+</html>
